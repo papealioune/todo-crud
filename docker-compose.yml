@@ -1,0 +1,20 @@
+version: '3.7' 
+services:
+ todo-app:
+   image: documents/github/todo-crud
+   container_name: todo-app
+   ports:
+    - "8080:8080"
+   depends_on:
+    - "dynamodb-local"
+   links:
+    - "dynamodb-local"
+   environment:
+    - AWS_ACCESS_KEY_ID='AKIASU3BUTMEB4XJ4T4H'
+    - AWS_SECRET_ACCESS_KEY='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'
+    - REGION='us-west-1'
+ dynamodb-local:
+   image: amazon/dynamodb-local:latest
+   container_name: dynamodb-local
+   ports:
+    - "8000:8000"
